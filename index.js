@@ -7,8 +7,7 @@
 module.exports = function transactionManager(sequelize) {
   'use strict';
 
-  this.create = create;
-  this.wrap = wrap;
+  return { create, wrap };
 
   /**
    * This function will create a transaction and commit after
@@ -48,6 +47,4 @@ module.exports = function transactionManager(sequelize) {
   function wrap(transaction, callback) {
     return transaction === undefined ? create(callback) : callback(transaction);
   }
-
-  return this;
 };
